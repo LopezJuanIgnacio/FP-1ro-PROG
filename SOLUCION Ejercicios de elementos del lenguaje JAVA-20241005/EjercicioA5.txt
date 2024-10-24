@@ -1,0 +1,10 @@
+5.- Dados los siguientes identificadores que se van a utilizar en un programa escrito en Java,
+¿Cuales de ellos son correctos y cuales no?.
+
+a) mi-programa              //No es correcto
+b) ¿Cuántos?                //No es correcto
+c) el%Descontado            //No es correcto
+d) a150PORHORA              //Es correcto
+e) TengoMUCHO$$$$$          //Es correcto
+f) LOS400GOLPES             //Es correcto
+g) quieroUNAsolución        //Es correcto

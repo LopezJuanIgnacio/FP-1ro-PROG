@@ -1,0 +1,10 @@
+4.- Dados los siguientes identificadores que se van a utilizar en un programa escrito en Java,
+¿Cuales de ellos son correctos y cuales no?.
+
+a) mi carta                 //No es correcto
+b) unacarta                 //Es correcto
+c) min2escritos             //Es correcto
+d) 4cientos                 //No es correcto
+e) es_un_mensaje            //Es correcto
+f) no_vale nada             //No es correcto
+g) ______ejemplo________    //Es correcto
