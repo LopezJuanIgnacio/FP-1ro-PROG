@@ -136,6 +136,82 @@ public class main {
         char[] caracteres = cadena.toCharArray();
         System.out.println(caracteres[0]); //Imprime: h
 
+        //Integer
+        int max = Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
+        //Pasar de INT a String
+        int a1 = 45678;
+        String a2 = Integer.toString( a1 );
+        //Pasar de String a INT
+        String b1 = "45678";
+        int b2 = Integer.parseInt( b1 );
+
+
+        //Character
+        Character.isDigit('3');
+        Character.isLetter('3');
+        Character.isUpperCase('D');
+        Character.toLowerCase('D');
+        //Devuelve True
+        //Devuelve False
+        //Devuelve True
+        //Devuelve ‘d’
+
+
+        //Random
+        Random r = new Random();
+        r.nextInt() // -2^31; 2^31 - 1
+        r.nextDouble() // 0;1
+
+        //Array
+        //Para declarar un array se debe especificar el tipo de los elementos y el tamaño del array
+        int[] numeros = new int[5];
+        int[] numeros = {1, 2, 3, 4, 5};
+        //Para asignar un valor a un elemento del array se debe usar el índice del elemento
+        numeros[0] = 1;
+        //Para obtener el valor de un elemento del array se debe usar el índice del elemento
+        int numero = numeros[0];
+        //Para recorrer un array se puede usar un bucle for
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println(numeros[i]);
+        }
+        //Para recorrer un array se puede usar un bucle for-each
+        for (int numero : numeros) {
+            System.out.println(numero);
+        }
+        //Para ordenar un array se puede usar el método sort de la clase Arrays
+        Arrays.sort(numeros);
+        //Para buscar un elemento en un array se puede usar el método binarySearch de la clase Arrays
+        int indice = Arrays.binarySearch(numeros, 3);
+        //Para copiar un array se puede usar el método copyOf de la clase Arrays
+        int[] copia = Arrays.copyOf(numeros, numeros.length);
+        //Para rellenar un array con un valor se puede usar el método fill de la clase Arrays
+        Arrays.fill(numeros, 0);
+        //Para convertir un array en una cadena se puede usar el método toString de la clase Arrays
+        System.out.println(Arrays.toString(numeros));
+        //Para comparar dos arrays se puede usar el método equals de la clase Arrays
+        if (Arrays.equals(numeros, copia)) {
+            System.out.println("Los arrays son iguales");
+        } else {
+            System.out.println("Los arrays son diferentes");
+        }
+
+        //Arrays anidados
+        //Para declarar un array anidado se debe especificar el tipo de los elementos y el tamaño de cada array
+        int[][] matriz = new int[3][3];
+        int[][] matriz = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        //Para asignar un valor a un elemento de la matriz se debe usar los índices de los elementos
+        matriz[0][0] = 1;
+        //Para obtener el valor de un elemento de la matriz se debe usar los índices de los elementos
+        int numero = matriz[0][0];
+        //Para recorrer una matriz se pueden usar dos bucles for
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.println(matriz[i][j]);
+            }
+        }
+        
+
 
     }
 }
