@@ -1,30 +1,32 @@
 package paquete;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
+public class flota {
+	public static int dim = 10;
 
-public class main {
 	public static void main(String[] args) {
-		char[][] grilla = new char[10][10];
+		char[][] grilla = new char[dim][dim];
 
 		int x, y;
 		Scanner sc = new Scanner(System.in);
 
 		for (int i = 0; i < grilla.length; i++) {
-            Arrays.fill(grilla[i], '*');
-        }
-		
+			Arrays.fill(grilla[i], '*');
+		}
+
 		grilla = rellenarGrilla(grilla);
 		do {
-			System.out.print("\033[H\033[2J");  
-    		System.out.flush();
+			System.out.print("\033[H\033[2J");
+			System.out.flush();
 			mostrarGrilla(grilla);
 			System.out.println("Escribe la coordenada x: ");
 			x = sc.nextInt();
 			System.out.println("Escribe la coordenada y: ");
 			y = sc.nextInt();
 			if ((y <= 9 && y >= 0) && (x <= 9 && x >= 0))
-				grilla[y][x] = ((grilla[y][x] == '*' || grilla[y][x] == 'X' ) ? 'X' : '0');
+				grilla[y][x] = ((grilla[y][x] == '*' || grilla[y][x] == 'X') ? 'X' : '0');
 		} while (termino(grilla) == false);
 		System.out.print("Victoria");
 	}
@@ -32,7 +34,7 @@ public class main {
 	public static void mostrarGrilla(char[][] grilla) {
 		for (int i = 0; i < grilla.length; i++) {
 			for (int j = 0; j < grilla[i].length; j++) {
-				System.out.print(((grilla[i][j] != 'X' && grilla[i][j] != '0' ) ? '*' : grilla[i][j]) + " ");
+				System.out.print(((grilla[i][j] != 'X' && grilla[i][j] != '0') ? '*' : grilla[i][j]) + " ");
 			}
 			System.out.println();
 		}
@@ -47,39 +49,49 @@ public class main {
 	}
 
 	public static char[][] ponerBarco(char[][] grilla, int x) {
-        int i, j;
-        char orien;
+		int i, j;
+		char orien;
 
-        i = (int) (Math.random() * 10);
-        j = (int) (Math.random() * 10);
-        orien = ((int) (Math.random() * 2) == 0) ? 'V' : 'H';
+		i = (int) (Math.random() * grilla.length);
+		j = (int) (Math.random() * grilla.length);
+		orien = ((int) (Math.random() * 2) == 0) ? 'V' : 'H';
 
-        if (esPosible(orien, i, j, x)) {
-            if (orien == 'V') {
-                for (int k = 0; k < x; k++) {
-                    grilla[i][j + k] = (char) (48 + x);
-                }
-            } else {
-                for (int k = 0; k < x; k++) {
-                    grilla[i + k][j] = (char) (48 + x);
-                }
-            }
-        } else
-            ponerBarco(grilla, x);
-        return grilla;
-    }
+		if (esPosible(orien, i, j, x, grilla)) {
+			if (orien == 'V') {
+				for (int k = 0; k < x; k++) {
+					grilla[i][j + k] = (char) (48 + x);
+				}
+			} else {
+				for (int k = 0; k < x; k++) {
+					grilla[i + k][j] = (char) (48 + x);
+				}
+			}
+		} else
+			ponerBarco(grilla, x);
+		return grilla;
+	}
 
-	public static boolean esPosible(char orien, int i, int j, int x) {
+	public static boolean esPosible(char orien, int i, int j, int x, char[][] grilla) {
 		if (orien == 'V') {
-			if ((j + x) > 10)
+			if ((j + x) > grilla.length)
 				return false;
-			else
+			else {
+				for (int k = 0; k < x; k++) {
+					if (grilla[i][j + k] != '*')
+						return false;
+				}
 				return true;
+			}
 		} else {
-			if ((i + x) > 10)
+			if ((i + x) > grilla.length)
 				return false;
-			else
+			else {
+				for (int k = 0; k < x; k++) {
+					if (grilla[i + k][j] != '*')
+						return false;
+				}
 				return true;
+			}
 		}
 	}
 
