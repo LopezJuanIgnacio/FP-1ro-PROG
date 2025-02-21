@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 class Persona {
@@ -123,6 +124,33 @@ public class Main {
         stack.peek(); //1
         stack.search(1); //1
 
+
+        //Collections
+        ArrayList<Integer> numeros = new ArrayList<>();
+        numeros.add(3);
+        numeros.add(1);
+        numeros.add(2);
+        System.out.println("Lista de números: " + numeros);
+        Collections.sort(numeros);
+        System.out.println("Lista de números ordenada: " + numeros);
+        Collections.reverse(numeros);
+        System.out.println("Lista de números invertida: " + numeros);
+        Collections.shuffle(numeros);
+        System.out.println("Lista de números mezclada: " + numeros);
+        Collections.swap(numeros, 0, 1);
+        System.out.println("Lista de números intercambiada: " + numeros);
+        Collections.fill(numeros, 0);
+        System.out.println("Lista de números rellenada: " + numeros);
+        Collections.replaceAll(numeros, 0, 1);
+        System.out.println("Lista de números reemplazada: " + numeros);
+        Collections.rotate(numeros, 1);
+        System.out.println("Lista de números rotada: " + numeros);
+        Collections.min(numeros); //1
+        Collections.max(numeros); //3
+        Collections.frequency(numeros, 1); //1
+        Collections.copy(numeros, numeros);
+        System.out.println("Lista de números copiada: " + numeros);
+        
 
 
     }
