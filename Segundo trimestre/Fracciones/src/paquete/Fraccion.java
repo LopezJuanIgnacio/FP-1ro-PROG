@@ -9,14 +9,6 @@ public class Fraccion {
         this.numerador = num;
     }
 
-    public int get_numerador() {
-        return this.numerador;
-    }
-
-    public int get_denominador() {
-        return this.denominador;
-    }
-
     public Fraccion invertir(){
         return new Fraccion(this.denominador, this.numerador);
     }
@@ -26,7 +18,7 @@ public class Fraccion {
     }
 
     public Fraccion multiplicar(Fraccion f2){
-        return new Fraccion(this.numerador * f2.get_numerador(), this.denominador * f2.get_denominador());
+        return new Fraccion(this.numerador * f2.numerador, this.denominador * f2.denominador);
     }
 
     public Fraccion dividir(Fraccion f2){
