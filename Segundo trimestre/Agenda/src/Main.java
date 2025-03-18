@@ -16,7 +16,7 @@ public class Main {
 		private ArrayList<Nota> notas;
 
 		public Pagina() {
-			this.notas = new ArrayList();
+			this.notas = new ArrayList<>();
 		}
 
 		public ArrayList<Nota> getNotas() {
@@ -104,9 +104,9 @@ public class Main {
 		System.out.print("Ingrese el texto de la nota: ");
 		txt = sc.nextLine();
 		
-		if(age.getPags()[nro] == null) age.getPags()[nro] = new Pagina();
+		if(age.getPags()[nro -1] == null) age.getPags()[nro -1] = new Pagina();
 		
-		age.getPags()[nro].agregarNota(new Nota(txt));
+		age.getPags()[nro -1].agregarNota(new Nota(txt));
 		
 		System.out.println("Nota agregada en la pagina " + nro);
 	}
@@ -127,12 +127,12 @@ public class Main {
 		nro = sc.nextInt();
 		sc.nextLine();
 		
-		if(age.getPags()[nro] == null) {
+		if(age.getPags()[nro -1] == null) {
 			System.out.println("(Sin notas)");
 			return;
 		}
 
-		for(Nota n : age.getPags()[nro].getNotas()) {
+		for(Nota n : age.getPags()[nro-1].getNotas()) {
 			System.out.println(n.getTxt());
 		}
 	}
