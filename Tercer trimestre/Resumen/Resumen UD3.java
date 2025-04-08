@@ -1,5 +1,9 @@
+
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 public class ResumenUD3 {
 
@@ -16,7 +20,7 @@ public class ResumenUD3 {
             // Manejo de la excepción genérica
         }
         // Ejemplo real
-        String texto[] = { "Uno", "Dos", "Tres", "Cuatro", "Cinco" };
+        String texto[] = {"Uno", "Dos", "Tres", "Cuatro", "Cinco"};
         for (int i = 0; i < 10; i++) {
             try {
                 System.out.println("indice " + i + " = " + texto[i]);
@@ -63,7 +67,8 @@ public class ResumenUD3 {
         Exception error = new Exception();
         Exception correoErroneo = new Exception("E-MAIL ERRONEO !!!");
 
-        class MisErrores extends Exception {  } //Aca escribis la clase de tu excepcion
+        class MisErrores extends Exception {
+        } //Aca escribis la clase de tu excepcion
 
         // Lanzar excepciones
         try {
@@ -71,17 +76,16 @@ public class ResumenUD3 {
         } catch (Exception e) {
             System.out.println(e.getMessage()); // Error de lectura
         }
-    }
-
-    //Cuando la excepción es lanzada por un método, se debe indicar en la cabecera del método
+        //Cuando la excepción es lanzada por un método, se debe indicar en la cabecera del método
     public void miMetodo() throws Exception {
         throw new Exception("Error en miMetodo");
     }
 
     //UD 9 - POO AVANZADO
     // HERENCIA
-    class Producto{
-        protected  String nombre;
+    class Producto {
+
+        protected String nombre;
         protected int cod;
 
         public Producto(String nombre, int cod) {
@@ -89,9 +93,11 @@ public class ResumenUD3 {
             this.cod = cod;
         }
     }
+
     //Herencia: Permite que una clase (subclase) herede atributos y métodos de otra clase (superclase),
     //    promoviendo la reutilización de código y la extensibilidad.
-    class Pelicula extends Producto{
+    class Pelicula extends Producto {
+
         private String director;
         private int duracion;
 
@@ -105,17 +111,18 @@ public class ResumenUD3 {
         //Sobreescritura de métodos: Permite que una subclase modifique la implementación de un método heredado.
         @Override
         public String toString() {
-            return "Pelicula{" +
-                    "nombre='" + nombre + '\'' +
-                    ", cod=" + cod +
-                    ", director='" + director + '\'' +
-                    ", duracion=" + duracion +
-                    '}';
+            return "Pelicula{"
+                    + "nombre='" + nombre + '\''
+                    + ", cod=" + cod
+                    + ", director='" + director + '\''
+                    + ", duracion=" + duracion
+                    + '}';
         }
-        
+
     }
 
-    class Libro extends Producto{
+    class Libro extends Producto {
+
         private String autor;
         private int paginas;
 
@@ -126,11 +133,11 @@ public class ResumenUD3 {
             this.paginas = paginas;
         }
 
-        public void anuncio(){
+        public void anuncio() {
             System.out.println("Nuevo libro de " + autor);
         }
 
-        public void anuncio(int cantidad){
+        public void anuncio(int cantidad) {
             System.out.println("Nuevo libro de " + autor + " en cantidad " + cantidad);
         }
 
@@ -144,29 +151,39 @@ public class ResumenUD3 {
 
     //Se puede almacenar en un array de la clase padre
     Producto[] productos = new Producto[2];
-    productos[0] = p;
-    productos[1] = l;
+    productos
+     [0] = p ;
+    productos
+     [1] = l ;
 
     ArrayList<Producto> lista = new ArrayList<>();
-    lista.add(p);
-    lista.add(l);
+
+    lista.add (p);
+
+    lista.add (l);
 
     //También tenemos polimorfismo cuando definimos distintos métodos que
     //reciben el mismo nombre pero que difieren
+    l.anuncio ();
 
-    l.anuncio();
-    l.anuncio(10);
+    l.anuncio (
+
+    10);
 
     // INTERFACES
     //Interfaces: Permiten definir un contrato que deben cumplir las clases que la implementan.
     //    Se definen con la palabra clave interface.
-    interface Interfaz_Producto{
+    interface Interfaz_Producto {
+
         final int IVA = 21; // Constante
+
         void mostrarPrecio();
+
         float precio_con_iva();
     }
 
-    public class Libro2 extends Producto implements Interfaz_Producto{
+    public class Libro2 extends Producto implements Interfaz_Producto {
+
         private int numPags;
         private String autor;
         private float precio;
@@ -197,8 +214,8 @@ public class ResumenUD3 {
     // CLASES ABSTRACTAS
     //Clases abstractas: Permiten definir métodos sin implementar, que deben ser implementados por las subclases OBLIGATORIAMENTE.
     //    Se definen con la palabra clave abstract.
+    abstract class Figura {
 
-    abstract class Figura{
         protected String color;
 
         public Figura(String color) {
@@ -209,7 +226,8 @@ public class ResumenUD3 {
         public abstract float area();
     }
 
-    class Circulo extends Figura{
+    class Circulo extends Figura {
+
         private float radio;
 
         public Circulo(String color, float radio) {
@@ -223,7 +241,8 @@ public class ResumenUD3 {
         }
     }
 
-    class Rectangulo extends Figura{
+    class Rectangulo extends Figura {
+
         private float base;
         private float altura;
 
@@ -238,5 +257,126 @@ public class ResumenUD3 {
             return base * altura;
         }
     }
-    
+
+        //UD 10 - Ficheros
+        // Ficheros de texto
+        File f = new File(String ruta);
+
+        //Metodos
+        f.getName(); // Nombre del fichero
+        f.getAbsolutePath(); // Ruta absoluta del fichero
+        f.getPath(); // Ruta relativa del fichero
+        f.getParent(); // Ruta del directorio padre
+
+        f.length(); // Tamaño del fichero en bytes
+        f.lastModified(); // Fecha de la última modificación
+        
+        f.exists(); // Comprobar si existe el fichero
+        f.isFile(); // Comprobar si es un fichero
+        f.isDirectory(); // Comprobar si es un directorio
+        f.mkdir(); // Crear un directorio
+        f.mkdirs(); // Crear un directorio y todos sus padres
+        f.delete(); // Eliminar un fichero o directorio
+        f.renameTo(new File("nuevo_nombre.txt")); // Renombrar un fichero o directorio
+
+        File[] lista = f.listFiles(); // Listar los ficheros de un directorio
+
+        //Lectura y escritura de ficheros
+        try {
+            // Intentamos abrir el fichero
+            File f = new File("Enteros.txt");
+            Scanner lector = new Scanner(f);
+            // Si llega aquí es que ha abierto el fichero :)
+            while (lector.hasNext()) {
+            String valor = lector.next();
+            System.out.println("El valor leído es: " + valor);
+            }
+            // ¡Hay que cerrar el fichero!
+            lector.close();
+        } catch (Exception e) {
+            // En caso de excepción mostramos el error
+            System.out.println("Error: " + e);
+            e.printStackTrace();
+        }
+
+        // Escritura de ficheros
+
+        try {
+            FileWriter fw = new FileWriter("Enteros.txt", true); // true para añadir al final, false para sobreescribir
+            fw.write("Hola mundo\n");
+            fw.write(65); // Escribir un caracter de valor 65 en la tabla ascii(A)
+            fw.write("" + 33); // Escribir el número 33
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+
+        try {
+            File f = new File("Enteros.txt");
+            FileWriter fw = new FileWriter(f);
+            int valor = 1;
+            for (int i = 1; i <= 20; i++) {
+            fw.write("" + valor); // escribimos valor
+            fw.write(" "); // escribimos espacio en blanco
+            valor = valor * 2; // calculamos próximo valor
+            }
+            fw.write("\n"); // escribimos nueva línea
+            fw.close(); // cerramos el FileWriter
+            System.out.println("Fichero escrito correctamente");
+            } catch (IOException e) {
+            System.out.println("Error: " + e);
+            }
+
+
+            //Serialización de objetos
+            //Serialización: Proceso de convertir un objeto en una secuencia de bytes para almacenarlo o transmitirlo.
+            //Deserialización: Proceso inverso, convertir una secuencia de bytes en un objeto.
+
+
+            //Clase que implementa Serializable
+            class Persona implements Serializable {
+                private String nombre;
+                private int edad;
+
+                public Persona(String nombre, int edad) {
+                    this.nombre = nombre;
+                    this.edad = edad;
+                }
+
+                @Override
+                public String toString() {
+                    return "Persona{" +
+                            "nombre='" + nombre + '\'' +
+                            ", edad=" + edad +
+                            '}';
+                }
+            }
+
+            //Serialización de un objeto
+            try {
+                FileOutputStream fos = new FileOutputStream("persona.ser");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                Persona p = new Persona("Juan", 30);
+                oos.writeObject(p);
+                oos.close();
+                fos.close();
+            } catch (IOException e) {
+                System.out.println("Error: " + e);
+            }
+
+            //Deserialización de un objeto
+            try{
+                FileInputStream fis = new FileInputStream("persona.ser");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                Persona p = (Persona) ois.readObject();
+                Persona p2 = (Persona) ois.readObject();
+                System.out.println(p);
+                System.out.println(p2);
+                ois.close();
+                fis.close();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Error: " + e);
+            }
+
+    }
+
 }
