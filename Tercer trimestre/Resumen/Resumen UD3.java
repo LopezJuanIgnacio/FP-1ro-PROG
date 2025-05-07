@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.io.File;
 import java.io.FileWriter;
+import java.sql.*;
 import java.util.Scanner;
 
 public class ResumenUD3 {
@@ -377,6 +378,36 @@ public class ResumenUD3 {
                 System.out.println("Error: " + e);
             }
 
+
+            //UD 11 - Swing
+            //Swing: Conjunto de componentes gráficos para crear interfaces de usuario en Java.
+            //Leer teoria
+
+
+            //UD 12 - Bases de datos
+            //JDBC: Java Database Connectivity, API para conectar y ejecutar consultas en bases de datos.
+
+            public void executeDatabaseQuery() {
+                try {
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/prueba", "root", "password");
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM tabla");
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String nombre = rs.getString("nombre");
+                        Date fecha = rs.getDate("fecha_ingreso");
+                        float salario = rs.getFloat("salario");
+                        System.out.println(id + " " + nombre + " " + fecha + " " + salario);
+                    }                        
+                    int nr = stmt.executeUpdate("INSERT INTO vendedores VALUES (1,'Pedro Gil', '2017-04-11', 15000);");
+                    System.out.println("Filas afectadas: " + nr);
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                } catch (SQLException e) {
+                    System.out.println("Error: " + e);
+                }
+            }
     }
 
 }
