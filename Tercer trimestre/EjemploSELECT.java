@@ -9,18 +9,18 @@ public class EjemploSELECT {
     
     static final String URL = "jdbc:mysql://localhost/ciclismo";
     static final String USUARIO = "root";
-    static final String CONTRASEÑA = "ender";
+    static final String CONTRASENA = "ender";
 
     public static void main(String[] args) throws SQLException {
         Connection conexion = null;
         try {
             
-            // Estableciendo la conexión
-            conexion = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA);
+            // Estableciendo la conexiNn
+            conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
             System.out.println("[!]ESTAS CONECTADO");
             //String query con SQL correcto
             String query = "SELECT * FROM equipo";
-            //Conexión define el Statement especificando si es SCROLL_SENSITIVE o CONCUR_UPDATABLE
+            //ConexiNn define el Statement especificando si es SCROLL_SENSITIVE o CONCUR_UPDATABLE
             Statement querySelect = conexion.createStatement();
             //Se ejecuta la query guardando el resultado en un ResultSet
             ResultSet resultado = querySelect.executeQuery(query);
@@ -44,7 +44,7 @@ public class EjemploSELECT {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    System.out.println("Error al cerrar la conexión: " + e.getMessage());
+                    System.out.println("Error al cerrar la conexiNn: " + e.getMessage());
                     System.out.println("[!]ESTAS DESCONECTADO");
                     conexion.close();
                 }

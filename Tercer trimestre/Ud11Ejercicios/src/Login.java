@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class Login extends JFrame {
 
@@ -17,6 +18,7 @@ public class Login extends JFrame {
 	private JTextField textField_1;
 	private ArrayList<Usuario> usuarios = new ArrayList();
 	private File fichero = new File("Usuarios.txt");
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -33,11 +35,11 @@ public class Login extends JFrame {
 			}
 		});
 	}
-	
-	public class Usuario{
+
+	public class Usuario {
 		String Nom;
 		String Contra;
-		
+
 		public Usuario(String nom, String contra) {
 			this.Nom = nom;
 			this.Contra = contra;
@@ -48,20 +50,18 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		
+
 		Scanner sc = null;
 		try {
 			sc = new Scanner(fichero);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		while(sc.hasNext()) {
+
+		while (sc.hasNext()) {
 			usuarios.add(new Usuario(sc.next(), sc.next()));
 		}
-		
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -69,25 +69,25 @@ public class Login extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		textField = new JTextField();
 		textField.setBounds(174, 42, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
+
 		textField_1 = new JPasswordField();
 		textField_1.setBounds(174, 73, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(102, 128, 89, 23);
-		btnNewButton.addActionListener(e ->{
+		btnNewButton.addActionListener(e -> {
 			String nom = textField.getText();
 			String contra = textField_1.getText();
-			
-			for(Usuario u : usuarios) {
-				if(u.Nom.equals(nom) && u.Contra.equals(contra)) {
+
+			for (Usuario u : usuarios) {
+				if (u.Nom.equals(nom) && u.Contra.equals(contra)) {
 					JOptionPane.showMessageDialog(null, "Logeo correcto");
 					return;
 				}
@@ -95,10 +95,10 @@ public class Login extends JFrame {
 			JOptionPane.showMessageDialog(null, "Nao Nao manin");
 		});
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Register");
 		btnNewButton_1.setBounds(239, 128, 89, 23);
-		btnNewButton_1.addActionListener(e ->{
+		btnNewButton_1.addActionListener(e -> {
 			String nom = textField.getText();
 			String contra = textField_1.getText();
 			final FileWriter fw;
@@ -108,14 +108,14 @@ public class Login extends JFrame {
 				e1.printStackTrace();
 				throw new RuntimeException("Failed to initialize FileWriter", e1); // Ensure fw is properly handled
 			}
-			
+
 			usuarios.add(new Usuario(nom, contra));
 			try {
 				fw.write("\n" + nom + " " + contra);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			
+
 			try {
 				fw.close();
 			} catch (IOException e1) {
@@ -125,6 +125,19 @@ public class Login extends JFrame {
 			JOptionPane.showMessageDialog(null, "Registro correcto");
 		});
 		contentPane.add(btnNewButton_1);
-	}
 
+		// comboBox = new JComboBox();
+		// comboBox.setBounds(205, 171, 30, 22);
+		// comboBox.addItem("1");
+		// comboBox.addItem("2");
+		// comboBox.addItem("3");
+		// comboBox.addItem("4");
+		// comboBox.addItem("5");
+
+		// comboBox.addActionListener(e -> {
+		// 	String selectedItem = (String) comboBox.getSelectedItem();
+		// 	JOptionPane.showMessageDialog(null, "You selected: " + selectedItem);
+		// });
+		// contentPane.add(comboBox);
+	}
 }

@@ -152,16 +152,14 @@ public class ResumenUD3 {
 
     //Se puede almacenar en un array de la clase padre
     Producto[] productos = new Producto[2];
-    productos
-     [0] = p ;
-    productos
-     [1] = l ;
+    productos[0] = p;
+    productos[1] = l;
 
     ArrayList<Producto> lista = new ArrayList<>();
 
-    lista.add (p);
+    lista.add(p);
 
-    lista.add (l);
+    lista.add(l);
 
     //También tenemos polimorfismo cuando definimos distintos métodos que
     //reciben el mismo nombre pero que difieren
@@ -325,57 +323,6 @@ public class ResumenUD3 {
             System.out.println("Fichero escrito correctamente");
             } catch (IOException e) {
             System.out.println("Error: " + e);
-            }
-
-
-            //Serialización de objetos
-            //Serialización: Proceso de convertir un objeto en una secuencia de bytes para almacenarlo o transmitirlo.
-            //Deserialización: Proceso inverso, convertir una secuencia de bytes en un objeto.
-
-
-            //Clase que implementa Serializable
-            class Persona implements Serializable {
-                private String nombre;
-                private int edad;
-
-                public Persona(String nombre, int edad) {
-                    this.nombre = nombre;
-                    this.edad = edad;
-                }
-
-                @Override
-                public String toString() {
-                    return "Persona{" +
-                            "nombre='" + nombre + '\'' +
-                            ", edad=" + edad +
-                            '}';
-                }
-            }
-
-            //Serialización de un objeto
-            try {
-                FileOutputStream fos = new FileOutputStream("persona.ser");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                Persona p = new Persona("Juan", 30);
-                oos.writeObject(p);
-                oos.close();
-                fos.close();
-            } catch (IOException e) {
-                System.out.println("Error: " + e);
-            }
-
-            //Deserialización de un objeto
-            try{
-                FileInputStream fis = new FileInputStream("persona.ser");
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                Persona p = (Persona) ois.readObject();
-                Persona p2 = (Persona) ois.readObject();
-                System.out.println(p);
-                System.out.println(p2);
-                ois.close();
-                fis.close();
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println("Error: " + e);
             }
 
 
